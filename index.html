@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpriză!</title>
+    <style>
+        body { text-align: center; font-family: 'Arial', sans-serif; background-color: #ffe6e6; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+        .gif { height: 200px; margin-bottom: 20px; }
+        .buttons { display: flex; gap: 20px; justify-content: center; position: relative; width: 100%; height: 50px; }
+        button { padding: 10px 20px; font-size: 18px; cursor: pointer; border-radius: 10px; border: none; background-color: #ff4d4d; color: white; transition: 0.3s; }
+        #noButton { position: absolute; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="step1">
+        <img class="gif" src="https://media.tenor.com/9vG9u9zC2mYAAAAi/mochi-peach.gif" alt="Pisică drăguță">
+        <h1>Vrei să fii valentinul meu? ❤️</h1>
+        <div class="buttons">
+            <button id="yesButton" onclick="nextStep(2)">DA</button>
+            <button id="noButton" onmouseover="moveButton()">NU</button>
+        </div>
+    </div>
+
+    <div id="step2" class="hidden">
+        <img class="gif" src="https://media.tenor.com/S6-v0VwGvX8AAAAi/gift-box.gif" alt="Cadou">
+        <h1>Ai primit un cadou! 🎁</h1>
+        <div class="buttons">
+            <button onclick="nextStep(3)">Deschide acum</button>
+            <button onclick="nextStep('sad')">Mai aștept</button>
+        </div>
+    </div>
+
+    <div id="step3" class="hidden">
+        <img class="gif" src="https://media.tenor.com/v_6EAs8B9mUAAAAi/tkthao219-bubududu.gif" alt="Pisici fericite">
+        <h1 style="color: #d63384;">Yeeeeeeey, te iubu! 💖</h1>
+    </div>
+
+    <div id="stepSad" class="hidden">
+        <img class="gif" src="https://media.tenor.com/X_S9o887N3AAAAAi/sad-cat.gif" alt="Pisică tristă">
+        <h1>Oww... o să stau aici și o să plâng... 🥺</h1>
+        <button onclick="nextStep(2)">Glumeam, deschide!</button>
+    </div>
+
+    <script>
+        function nextStep(step) {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('stepSad').classList.add('hidden');
+
+            if(step === 2) document.getElementById('step2').classList.remove('hidden');
+            else if(step === 3) document.getElementById('step3').classList.remove('hidden');
+            else if(step === 'sad') document.getElementById('stepSad').classList.remove('hidden');
+        }
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            const btn = document.getElementById('noButton');
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
