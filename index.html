@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Surpriză ❤️</title>
+    <style>
+        body { text-align: center; font-family: 'Arial', sans-serif; background-color: #ffe6e6; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        .gif { height: 180px; margin-bottom: 20px; border-radius: 15px; }
+        h1 { font-size: 24px; color: #333; padding: 0 20px; }
+        .buttons-container { display: flex; justify-content: center; align-items: center; gap: 40px; width: 100%; min-height: 100px; position: relative; margin-top: 20px; }
+        button { padding: 15px 30px; font-size: 20px; font-weight: bold; cursor: pointer; border-radius: 15px; border: none; color: white; transition: 0.3s; z-index: 10; min-width: 100px; }
+        #yesButton { background-color: #4CAF50; position: relative; } 
+        #noButton { background-color: #ff4d4d; position: absolute; } 
+        .hidden { display: none; }
+        .sad-btn { background-color: #808080 !important; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="step1">
+        <img class="gif" src="https://media.tenor.com/9vG9u9zC2mYAAAAi/mochi-peach.gif">
+        <h1>Vrei să fii valentinul meu? ❤️</h1>
+        <div class="buttons-container">
+            <button id="yesButton" onclick="nextStep(2)">DA</button>
+            <button id="noButton" onmouseover="moveButton()" onclick="moveButton()">NU</button>
+        </div>
+    </div>
+
+    <div id="step2" class="hidden">
+        <img class="gif" src="https://media.tenor.com/S6-v0VwGvX8AAAAi/gift-box.gif">
+        <h1>Ai primit un cadou! 🎁</h1>
+        <button id="yesButton" style="background-color: #ff4d4d;" onclick="nextStep(3)">Deschide acum</button>
+        <br>
+        <button class="sad-btn" onclick="nextStep('sad')">Mai aștept</button>
+    </div>
+
+    <div id="step3" class="hidden">
+        <img class="gif" src="https://media.tenor.com/v_6EAs8B9mUAAAAi/tkthao219-bubududu.gif">
+        <h1 style="color: #d63384;">Yeeeeeeey, te iubu! 💖</h1>
+    </div>
+
+    <div id="stepSad" class="hidden">
+        <img class="gif" src="https://media.tenor.com/X_S9o887N3AAAAAi/sad-cat.gif">
+        <h1>Oww... plâng... 🥺</h1>
+        <button id="yesButton" onclick="nextStep(2)">Glumeam, deschide!</button>
+    </div>
+
+    <script>
+        function nextStep(step) {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('stepSad').classList.add('hidden');
+
+            if(step === 2) document.getElementById('step2').classList.remove('hidden');
+            else if(step === 3) document.getElementById('step3').classList.remove('hidden');
+            else if(step === 'sad') document.getElementById('stepSad').classList.remove('hidden');
+        }
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 150);
+            const btn = document.getElementById('noButton');
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
